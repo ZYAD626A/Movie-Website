@@ -51,11 +51,13 @@ async function content(url, type, defaultUrl) {
           title: ele.title_english,
           url: ele.url,
           score: Math.floor(ele.score),
+          description: ele.synopsis,
         };
       });
 
       sliderMovies(result);
     } else if (type === "movies") {
+      console.log(data);
       result = data.map((ele) => {
         return {
           img: ele.image.original,
@@ -64,10 +66,13 @@ async function content(url, type, defaultUrl) {
           url: ele.url,
           genres: data.genres,
           score: Math.floor(ele.rating.average),
+          description: ele.summary,
         };
       });
 
       sliderMovies(result);
+    }else{
+        alert("not allow now")
     }
   } catch (error) {
     console.log(error);
@@ -81,6 +86,7 @@ window.addEventListener("load", () => {
 // print data
 function sliderMovies(data) {
   let sliderCard = "";
+  let movieCard = "";
   for (let i = 0; i < 15; i++) {
     sliderCard += `
 <div class="card-movie d-flex align-items-end justify-content-center">
@@ -109,8 +115,31 @@ function sliderMovies(data) {
     `;
   }
 
+  for (let i = 0; i < data.length; i++) {
+    movieCard += `
+<div class="card-movie col-6 col-md-4 col-lg-3" onclick = "window.location.href = '${data[i].url}';">
+                    
+<div class="image-frame">
+ <img src="${data[i].img}" alt="${data[i].img}">
+  </div>
+
+<div class="description px-2 mt-2">
+  <div class="title d-flex flex-wrap text-light align-items-center justify-content-between">
+                           <h4>${data[i].title || "Anime Name"}</h4>
+     <h5 class="text-secondary">${data[i].year || "Year"}</h5>
+ </div>
+  <p class="text-light sumray">
+  ${data[i].description.split(" ").slice(0, 12).join(" ") + "..."}
+  </p>
+ </div>
+
+ </div>
+    `;
+  }
+  let allCards = document.querySelector(".all-cards");
   let contentResleaseSec = document.querySelector(".content-reslease-sec");
   contentResleaseSec.innerHTML = sliderCard;
+  allCards.innerHTML = movieCard;
 
   //   default scroll
   let step = 700;
