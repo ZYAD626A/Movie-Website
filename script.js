@@ -19,6 +19,7 @@ aside();
 
 function selectContent() {
   let itemSelect = document.querySelectorAll(".item-select");
+
   let links = [
     "https://api.tvmaze.com/shows",
     "https://api.jikan.moe/v4/seasons/2018/spring?sfw",
@@ -27,6 +28,8 @@ function selectContent() {
   // anime
   itemSelect.forEach((btn, index) => {
     btn.onclick = () => {
+      itemSelect.forEach((e) => e.classList.remove("active"));
+      btn.classList.add("active");
       content(links[index], btn.dataset.selcet);
     };
   });
@@ -71,8 +74,8 @@ async function content(url, type, defaultUrl) {
       });
 
       sliderMovies(result);
-    }else{
-        alert("not allow now")
+    } else {
+      alert("not allow now");
     }
   } catch (error) {
     console.log(error);
