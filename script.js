@@ -120,7 +120,7 @@ function sliderMovies(data) {
 
   for (let i = 0; i < data.length; i++) {
     movieCard += `
-<div class="card-movie col-6 col-md-4 col-lg-3" onclick = "window.location.href = '${data[i].url}';">
+<div class="card-movie col-6 col-md-4 col-lg-4 " onclick = "window.location.href = '${data[i].url}';">
                     
 <div class="image-frame">
  <img src="${data[i].img}" alt="${data[i].img}">
@@ -134,6 +134,13 @@ function sliderMovies(data) {
   <p class="text-light sumray">
   ${data[i].description.split(" ").slice(0, 12).join(" ") + "..."}
   </p>
+
+  <div class="py-2 div-stars">
+   ${'<button class="active"><i class="fa-solid fa-star"></i></button>'.repeat(
+     data[i].score,
+   )}
+  </div>
+
  </div>
 
  </div>

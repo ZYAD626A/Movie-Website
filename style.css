@@ -202,7 +202,7 @@ main .content > header > ul li a:hover {
   color: var(--light-color);
   text-shadow: 1px 1px 0 #000;
 }
-.content-reslease-sec .content-card > .title .div-stars button {
+.div-stars button {
   width: fit-content;
   height: fit-content;
   background: none;
@@ -211,7 +211,7 @@ main .content > header > ul li a:hover {
   color: var(--light-color);
   font-size: 18px;
 }
-.content-reslease-sec .content-card > .title .div-stars button.active {
+.div-stars button.active {
   color: yellow;
 }
 .content-reslease-sec .content-card .watch-btn {
